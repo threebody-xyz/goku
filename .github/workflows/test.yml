@@ -1,0 +1,15 @@
+name: Test
+on:
+  pull_request:
+env:
+  GO111MODULE: "on"
+jobs:
+  actionlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version-file: .go-version
+      - name: UnitTest
+        run: go test -race -v ./...
