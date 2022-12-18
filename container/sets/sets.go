@@ -1,3 +1,4 @@
+// Package sets implements some functions that operate on sets, and the set structure.
 package sets
 
 // Intersect returns the intersection of some sets(eg. A, B), each element is in A and B

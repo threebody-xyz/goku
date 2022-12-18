@@ -6,6 +6,7 @@ Goku
 </h1>
 
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
+[![Go Reference](https://pkg.go.dev/badge/github.com/three-body/goku.svg)](https://pkg.go.dev/github.com/three-body/goku)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/three-body/goku/blob/main/LICENSE)
 
 English | [简体中文](./README_zh-CN.md)

@@ -14,12 +14,13 @@ func TestSetString(t *testing.T) {
 	s.Add("aaa", "bbb", "ccc")
 	assert.ElementsMatch(t, []string{"aaa", "bbb", "ccc"}, s.ToSlice())
 	assert.Equal(t, 3, s.Len())
+	assert.Equal(t, true, s.Has("aaa", "ccc"))
 
 	s.Remove("bbb", "ddd")
 	assert.ElementsMatch(t, []string{"aaa", "ccc"}, s.ToSlice())
 	assert.Equal(t, 2, s.Len())
 	assert.Equal(t, true, s.Has("aaa"))
-	assert.Equal(t, false, s.Has("ddd"))
+	assert.Equal(t, false, s.Has("aaa", "ddd"))
 
 	c := s.Clone()
 	c.Add("ddd")

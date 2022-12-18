@@ -31,9 +31,14 @@ func (s *Set[T]) Remove(es ...T) {
 }
 
 // Has report whether v is in s
-func (s *Set[T]) Has(v T) bool {
-	_, ok := s.m[v]
-	return ok
+func (s *Set[T]) Has(es ...T) bool {
+	for _, e := range es {
+		if _, ok := s.m[e]; !ok {
+			return false
+		}
+	}
+
+	return true
 }
 
 // Len report the elements number of s
