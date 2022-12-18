@@ -7,6 +7,7 @@ goku
 
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
 [![Go Reference](https://pkg.go.dev/badge/github.com/three-body/goku.svg)](https://pkg.go.dev/github.com/three-body/goku)
+[![codecov](https://codecov.io/github/three-body/goku/branch/main/graph/badge.svg?token=UY9FJ1ROTK)](https://codecov.io/github/three-body/goku)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/three-body/goku/blob/main/LICENSE)
 
 [English](./README.md) | 简体中文
