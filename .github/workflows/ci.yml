@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+      - release/*
   pull_request:
     branches:
       - main
+      - release/*
 
 jobs:
   lint:
@@ -24,7 +26,6 @@ jobs:
       - name: Run Intsall Golangci-lint
         run: ./golangci-lint run ./...
   test:
-    needs: Lint
     name: Test
     runs-on: ${{ matrix.os }}
     strategy:

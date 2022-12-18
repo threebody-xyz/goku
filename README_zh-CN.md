@@ -5,6 +5,8 @@
 goku
 </h1>
 
+
+[![CI](https://github.com/three-body/goku/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/three-body/goku/actions/workflows/ci.yml)
 ![Go version](https://img.shields.io/badge/go-%3E%3Dv1.18-9cf)
 [![Go Reference](https://pkg.go.dev/badge/github.com/three-body/goku.svg)](https://pkg.go.dev/github.com/three-body/goku)
 [![codecov](https://codecov.io/github/three-body/goku/branch/main/graph/badge.svg?token=UY9FJ1ROTK)](https://codecov.io/github/three-body/goku)
