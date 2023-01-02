@@ -1,8 +1,9 @@
 package deque
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestDequeBasicInt(t *testing.T) {
@@ -43,8 +44,8 @@ func TestDequeBasicType(t *testing.T) {
 	d.PushFront(User{"1"}, User{"2"})
 	assert.Equal(t, 2, d.Len())
 	assert.Equal(t, minCapacity, d.Cap())
-
 }
+
 func TestDequeWithCap(t *testing.T) {
 	d := NewDequeWithCap[int](20)
 	assert.Equal(t, minCapacity*2, d.Cap())
@@ -52,22 +53,45 @@ func TestDequeWithCap(t *testing.T) {
 	d = NewDequeWithCap[int](8)
 	assert.Equal(t, minCapacity, d.Cap())
 }
-func TestDequeResize(t *testing.T) {
-	deque := NewDeque[int]()
-	for i := 0; i < minCapacity; i++ {
-		deque.PushFront(i)
-	}
-	assert.Equal(t, minCapacity*2, deque.Cap())
 
-	for i := 0; i < minCapacity/2; i++ {
+func TestDequeResize(t *testing.T) {
+	slice := make([]int, 0)
+	for i := 0; i < 64; i++ {
+		slice = append(slice, i)
+	}
+
+	deque := NewDeque[int]()
+
+	deque.PushBack(slice...)
+	assert.Equal(t, 128, deque.Cap())
+	deque.PushFront(slice...)
+	assert.Equal(t, 256, deque.Cap())
+
+	for i := 0; i < 64; i++ {
+		deque.PopFront()
+	}
+	assert.Equal(t, 128, deque.Cap())
+	for i := 0; i < 32; i++ {
 		deque.PopBack()
 	}
-	assert.Equal(t, minCapacity, deque.Cap())
+	assert.Equal(t, 64, deque.Cap())
 
-	for i := 0; i < minCapacity; i++ {
-		deque.PushFront(i)
+	deque = NewDeque[int]()
+
+	deque.PushBack(-1, 0, 1, 2, 3, 4)
+	deque.PopFront()
+	deque.resize(50)
+	assert.Equal(t, 128, deque.Cap())
+	for i := 0; i < 5; i++ {
+		assert.Equal(t, i, deque.Get(i))
 	}
-	deque.PushBack(1, 2, 3, 4, 5)
+
+	deque.PushFront(-1, -2, -3, -4, -5)
+	deque.resize(10)
+	assert.Equal(t, 32, deque.Cap())
+	for i := 0; i < 10; i++ {
+		assert.Equal(t, i-5, deque.Get(i))
+	}
 
 }
 
@@ -112,6 +136,7 @@ func TestPanic(t *testing.T) {
 		deque.Set(1, 0)
 	})
 }
+
 func TestLowPower(t *testing.T) {
 	assert.Equal(t, 1, lowPower(1))
 	assert.Equal(t, 2, lowPower(2))
@@ -139,6 +164,7 @@ func BenchmarkPushPopBack(b *testing.B) {
 		deque.PopBack()
 	}
 }
+
 func BenchmarkPushPopFront(b *testing.B) {
 	deque := NewDeque[int]()
 	for i := 0; i < b.N; i++ {

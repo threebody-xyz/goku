@@ -5,12 +5,10 @@ on:
     branches:
       - main
       - release/*
-      - dev/shiyi
   pull_request:
     branches:
       - main
       - release/*
-
 jobs:
   lint:
     name: Lint
@@ -22,10 +20,10 @@ jobs:
       - uses: actions/setup-go@v2
         with:
           go-version: '1.18'
-      - name: Intsall Golangci-lint
-        run: curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh| sh -s -- -b . latest
-      - name: Run Intsall Golangci-lint
-        run: ./golangci-lint run ./...
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: latest
   test:
     name: Test
     runs-on: ${{ matrix.os }}

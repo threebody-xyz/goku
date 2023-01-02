@@ -11,7 +11,16 @@ func TestIntersect(t *testing.T) {
 	b := NewSet[string]("aaa", "ccc")
 	c := NewSet[string]("aaa", "bbb")
 
-	d := Intersect(a, b, c)
+	d := Intersect[string]()
+	assert.ElementsMatch(t, []string{}, d.ToSlice())
+
+	d = Intersect(a)
+	assert.ElementsMatch(t, []string{"aaa", "bbb", "ccc"}, d.ToSlice())
+
+	d = Intersect(a, b)
+	assert.ElementsMatch(t, []string{"aaa", "ccc"}, d.ToSlice())
+
+	d = Intersect(a, b, c)
 	assert.ElementsMatch(t, []string{"aaa"}, d.ToSlice())
 }
 
@@ -20,7 +29,16 @@ func TestUnion(t *testing.T) {
 	b := NewSet[string]("aaa", "ccc")
 	c := NewSet[string]("ccc", "bbb")
 
-	d := Union(a, b, c)
+	d := Union[string]()
+	assert.ElementsMatch(t, []string{}, d.ToSlice())
+
+	d = Union(a)
+	assert.ElementsMatch(t, []string{"aaa", "bbb"}, d.ToSlice())
+
+	d = Union(a, b)
+	assert.ElementsMatch(t, []string{"aaa", "bbb", "ccc"}, d.ToSlice())
+
+	d = Union(a, b, c)
 	assert.ElementsMatch(t, []string{"aaa", "bbb", "ccc"}, d.ToSlice())
 }
 
